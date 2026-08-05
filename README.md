@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TeamSpace
 
-## Getting Started
+A modern team collaboration platform built with Next.js, featuring real-time messaging, video calls, and cloud storage integration.
 
-First, run the development server:
+## Features
+
+- 🔐 **Google OAuth Authentication** via Supabase
+- 💬 **Team Channels & Direct Messages** - Slack/Discord-inspired interface
+- 📹 **Video/Voice Calls** - Powered by Daily.co
+- 📁 **Google Drive Integration** - View and upload files
+- 🎨 **Modern UI** - Dark theme with smooth animations
+- 💻 **Desktop App** - Native Windows application with Electron
+
+## Quick Start
+
+### Run in Browser
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Run as Desktop App
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run electron:dev
+```
+
+A native desktop window will open with custom window controls!
+
+**📖 See [QUICK_START.md](./QUICK_START.md) for detailed Electron usage.**
+
+## Project Structure
+
+```
+teamspace/
+├── src/
+│   ├── app/              # Next.js app router pages
+│   ├── components/       # React components
+│   └── lib/              # Utilities (Supabase client)
+├── electron/             # Electron desktop app files
+├── public/               # Static assets
+└── supabase/             # Database migrations
+```
+
+## Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Run Next.js dev server (browser) |
+| `npm run build` | Build for production |
+| `npm run electron:dev` | Run Electron desktop app |
+| `npm run electron:build` | Build Windows installer |
+
+## Technology Stack
+
+- **Framework**: Next.js 16.3 (App Router)
+- **UI**: React 19, Tailwind CSS 4, Framer Motion
+- **Auth**: Supabase (Google OAuth)
+- **Video**: Daily.co
+- **Storage**: Google Drive API
+- **Desktop**: Electron
+
+## Environment Variables
+
+Create a `.env.local` file (see `.env.local.example`):
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_key
+DAILY_API_KEY=your_daily_api_key
+```
+
+## Documentation
+
+- **[QUICK_START.md](./QUICK_START.md)** - Get started with Electron desktop app
+- **[HOW_TO_USE_ELECTRON.md](./HOW_TO_USE_ELECTRON.md)** - Complete Electron usage guide
+- **[ELECTRON.md](./ELECTRON.md)** - Technical architecture details
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Electron Documentation](https://www.electronjs.org/docs)
+- [Supabase Documentation](https://supabase.com/docs)
+- [Daily.co API](https://docs.daily.co/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Web Deployment (Vercel)
 
-## Deploy on Vercel
+```bash
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Deploy to [Vercel Platform](https://vercel.com/new) - the easiest way to deploy Next.js apps.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Desktop Distribution
+
+```bash
+npm run electron:build
+```
+
+Find the Windows installer in the `dist/` folder. Share `TeamSpace Setup.exe` with users!
+
+## License
+
+Private project - All rights reserved.

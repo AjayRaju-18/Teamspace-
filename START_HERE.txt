@@ -1,0 +1,70 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║           TeamSpace Desktop App - START HERE                 ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  OPTION 1: Run as Desktop App (Recommended)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  1. Open terminal in this folder
+  
+  2. Run this command:
+     
+     npm run electron:dev
+  
+  3. Wait for the window to open (20-30 seconds first time)
+  
+  4. Use the app! Controls are in the top-left:
+     🔴 Close  🟡 Minimize  🟢 Maximize
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  OPTION 2: Run in Browser
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  1. Open terminal in this folder
+  
+  2. Run this command:
+  
+     npm run dev
+  
+  3. Open browser: http://localhost:3000
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Build Windows Installer
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  npm run electron:build
+  
+  → Creates installer in dist/ folder
+  → Share "TeamSpace Setup.exe" with others!
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Stop the App
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • In terminal: Press Ctrl+C
+  • In app window: Click the red 🔴 button
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Need Help?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  📖 QUICK_START.md - Quick reference guide
+  📖 HOW_TO_USE_ELECTRON.md - Detailed instructions
+  📖 ELECTRON.md - Technical details
+  📖 README.md - Full project documentation
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  First time? The command downloads Electron (~200MB)
+  This only happens once!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
