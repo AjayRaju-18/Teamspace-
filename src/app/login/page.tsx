@@ -1,6 +1,8 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { getSupabase } from '@/lib/supabaseClient';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
@@ -13,20 +15,42 @@ const TRAFFIC_LIGHTS = [
 ] as const;
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [isDemoMode, setIsDemoMode] = useState(false);
+
+  useEffect(() => {
+    // Check if Supabase is configured
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    setIsDemoMode(!url);
+  }, []);
+
   /**
    * getSupabase() is called here — inside an event handler — so it never
    * runs during Next.js static prerendering. The lazy client is created only
    * when the user clicks the button.
    */
   const handleGoogleSignIn = async () => {
-    const supabase = getSupabase();
-    await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: window.location.origin + '/auth/callback',
-        scopes: 'https://www.googleapis.com/auth/drive.file',
-      },
-    });
+    if (isDemoMode) {
+      // In demo mode, just redirect to workspace
+      console.log('🎮 Demo Mode: Redirecting to workspace');
+      router.push('/workspace');
+      return;
+    }
+
+    try {
+      const supabase = getSupabase();
+      await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: window.location.origin + '/auth/callback',
+          scopes: 'https://www.googleapis.com/auth/drive.file',
+        },
+      });
+    } catch (error) {
+      console.error('Sign in error:', error);
+      // If auth fails, redirect to workspace anyway in demo mode
+      router.push('/workspace');
+    }
   };
 
   return (
@@ -52,6 +76,15 @@ export default function LoginPage() {
             />
           ))}
         </div>
+
+        {/* Demo Mode Notice */}
+        {isDemoMode && (
+          <div className="mb-6 p-3 rounded-lg bg-accent/10 border border-accent/20">
+            <p className="text-xs text-accent text-center">
+              🎮 Demo Mode - Click to explore the interface
+            </p>
+          </div>
+        )}
 
         {/* ── App branding ── */}
         <motion.div
@@ -83,7 +116,9 @@ export default function LoginPage() {
           <h1 className="text-2xl font-bold text-white tracking-tight">
             TeamSpace
           </h1>
-          <p className="text-text-muted text-sm">Sign in to continue</p>
+          <p className="text-text-muted text-sm">
+            {isDemoMode ? 'Demo Mode - Explore the UI' : 'Sign in to continue'}
+          </p>
         </motion.div>
 
         {/* ── Google sign-in button ── */}
@@ -112,7 +147,7 @@ export default function LoginPage() {
               fill="#EA4335"
             />
           </svg>
-          Continue with Google
+          {isDemoMode ? 'Enter Demo Workspace' : 'Continue with Google'}
         </Button>
 
         {/* Fine print */}
@@ -127,6 +162,17 @@ export default function LoginPage() {
           </span>
           .
         </p>
+
+        {/* Setup instructions */}
+        {isDemoMode && (
+          <div className="mt-6 p-4 rounded-lg bg-bg-primary border border-white/10">
+            <p className="text-xs text-text-muted leading-relaxed">
+              <strong className="text-white block mb-2">Want full features?</strong>
+              Create <code className="text-accent">.env.local</code> file with your Supabase credentials.
+              See <code className="text-accent">.env.local.example</code> for details.
+            </p>
+          </div>
+        )}
       </Card>
     </main>
   );
